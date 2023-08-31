@@ -22,3 +22,7 @@ Resource - https://github.com/rvm/rvm/issues/5047
 
 Rails version - 7.0.7
 
+React version - 18.2.0
+
+React router version - 6.15.0
+
