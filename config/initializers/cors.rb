@@ -5,15 +5,23 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
+# Rails.application.config.middleware.insert_before 0, Rack::Cors do
+#   allow do
+#     #where my request comes from, eg my app's address or URL
+#     origins 'http://127.0.0.1:5173'
+#     # origins 'https://my-domain.com'
+#
+#     resource "*",
+#       headers: :any,
+#       methods: [:get, :post, :put, :patch, :delete, :options, :head]
+#   end
+# end
+
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    #where my request comes from, eg my app's address or URL
-    origins 'http://127.0.0.1:5173'
-    # origins 'https://my-domain.com'
-
-    resource "*",
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+    origins '*'
+    # origins 'http://127.0.0.1:5173'
+    # resource '*', headers: :any, methods: [:get, :post, :patch, :put]
+    resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
   end
 end
-
