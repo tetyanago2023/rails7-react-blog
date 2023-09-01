@@ -37,8 +37,6 @@ function PostsList() {
             });
 
             if (response.ok) {
-                // const json = await response.json();
-                // console.error(json);
                 setPosts(posts.filter((post) => post.id !== id));
             } else {
                 throw response
@@ -58,6 +56,8 @@ function PostsList() {
                         </Link>
                     </h2>
                     <div className="post-link">
+                        <Link to={`/posts/${post.id}/edit`}>Edit Post</Link>
+                        {" | "}
                         <button onClick={() => deletePost(post.id)}>Delete</button>
                     </div>
                 </div>
