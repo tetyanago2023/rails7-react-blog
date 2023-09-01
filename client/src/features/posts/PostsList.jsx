@@ -29,6 +29,25 @@ function PostsList() {
         loadPosts();
     }, []);
 
+    const deletePost = async (id) => {
+        try {
+            //DELETE request to http://0.0.0.0:3000/api/v1/posts/:id (~API_URL)
+            const response = await fetch(`${API_URL}/${id}`, {
+                method: "DELETE",
+            });
+
+            if (response.ok) {
+                // const json = await response.json();
+                // console.error(json);
+                setPosts(posts.filter((post) => post.id !== id));
+            } else {
+                throw response
+            }
+        } catch (e) {
+            console.error(e)
+        }
+    };
+
     return (
         <div>
             {posts.map((post) => (
@@ -38,8 +57,9 @@ function PostsList() {
                             {post.title}
                         </Link>
                     </h2>
-
-                    <p>{post.body}</p>
+                    <div className="post-link">
+                        <button onClick={() => deletePost(post.id)}>Delete</button>
+                    </div>
                 </div>
             ))}
         </div>
