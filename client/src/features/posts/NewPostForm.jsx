@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import {API_URL} from "../../constants.js";
 import {createPost} from "../../services/postService.js";
 
 function NewPostForm(props) {
@@ -26,7 +25,7 @@ function NewPostForm(props) {
             <h2>Create a New Post</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="titleInput">Title: </label>
+                    <label htmlFor="titleInput">Title:</label>
                     <input
                         id="titleInput"
                         type="text"
@@ -36,7 +35,7 @@ function NewPostForm(props) {
                     />
                 </div>
                 <div>
-                    <label htmlFor="bodyInput">Body: </label>
+                    <label htmlFor="bodyInput">Body:</label>
                     <textarea
                         id="bodyInput"
                         value={body}
@@ -45,7 +44,7 @@ function NewPostForm(props) {
                     />
                 </div>
                 <div>
-                    <button type="submit">Submit Post</button>
+                    <button type="submit">Create Post</button>
                 </div>
             </form>
         </div>
