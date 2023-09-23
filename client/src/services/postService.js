@@ -51,19 +51,18 @@ async function updatePost(id, postData) {
 
     return response.json();
 }
+//
 async function deletePost(id) {
     const response = await fetch(`${API_URL}/${id}`, {
         method: "DELETE",
     });
 
-    if (!response.ok) {
-        throw new Error(response.statusText);
-    }
     // 204 is No Content status
     if (response.status === 204) {
         return null;
     }
-    return response.json();
+
+    throw new Error(response.statusText);
 }
 
 export { createPost, deletePost, fetchAllPosts, fetchPost, updatePost };
