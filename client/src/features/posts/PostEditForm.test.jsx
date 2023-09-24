@@ -64,7 +64,7 @@ describe("PostEditForm", () => {
 
         await act(async () => {
             // fireEvent.click(screen.getByText(/Update Post/i));
-            fireEvent.click(screen.getByText(/Save/i));
+            fireEvent.click(screen.getByText(/Update post/i));
         });
 
         await waitFor(() => {
@@ -85,7 +85,7 @@ describe("PostEditForm", () => {
         renderForm();
 
         await waitFor(() => {
-            fireEvent.click(screen.getByText(/Save/i));
+            fireEvent.click(screen.getByText(/Update Post/i));
         });
 
         await waitFor(() => {
