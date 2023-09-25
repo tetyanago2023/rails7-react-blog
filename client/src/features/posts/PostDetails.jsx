@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {API_URL} from "../../constants.js";
 import {deletePost, fetchPost} from "../../services/postService.js";
 
 function PostDetails() {
@@ -34,6 +33,7 @@ function PostDetails() {
     return (
         <div>
             <h2>{post.title}</h2>
+            <img src={post.image_url} alt={post.title} className="post-image"/>
             <p>{post.body}</p>
             <Link to={`/posts/${id}/edit`}>Edit Post</Link>
             {" | "}

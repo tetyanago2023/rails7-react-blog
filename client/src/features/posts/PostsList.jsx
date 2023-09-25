@@ -2,6 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {deletePost, fetchAllPosts} from "../../services/postService.js";
+import "./PostImage.css";
 
 function PostsList() {
     const [posts, setPosts] = useState([]);
@@ -42,6 +43,20 @@ function PostsList() {
                             {post.title}
                         </Link>
                     </h2>
+                    <div className="post-image-container">
+                        {/* Standard image if the url exists */}
+                        {/* If the url does not exist, render an empty div */}
+                        {/* of equal size to the standard post-image container */}
+                        {post.image_url ? (
+                            <img
+                                src={post.image_url}
+                                alt={post.title}
+                                className="post-image"
+                            />
+                        ) : (
+                            <div className="post-image-stub" data-testid="post-image-stub" />
+                        )}
+                    </div>
                     <div className="post-link">
                         <Link to={`/posts/${post.id}/edit`}>Edit Post</Link>
                         {" | "}
