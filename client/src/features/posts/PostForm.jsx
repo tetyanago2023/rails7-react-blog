@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 
 function PostForm({ post, headerText, onSubmit, buttonText }) {
 
-    const[formData, SetFormData] = useState(
+    const[formData, setFormData] = useState(
         post || {
         title: "",
-        body: ""
+        body: "",
+        image: "",
     });
-
 
     return (
         <div>
@@ -24,21 +24,39 @@ function PostForm({ post, headerText, onSubmit, buttonText }) {
                         id="title"
                         type="text"
                         value={formData.title}
-                        onChange={(e) => SetFormData({
+                        onChange={(e) => setFormData({
                             ...formData,
                             title: e.target.value})}
                     />
                 </div>
+
+                <div>
+                    <label htmlFor="image">Image:</label>
+                    <input
+                        id="image"
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                            setFormData({
+                                ...formData,
+                                image: e.target.files[0],
+                            });
+                            console.log(e.target.files[0]);
+                        }}
+                    />
+                </div>
+
                 <div>
                     <label htmlFor="body">Body:</label>
                     <textarea
                         id="body"
                         value={formData.body}
-                        onChange={(e) => SetFormData({
+                        onChange={(e) => setFormData({
                             ...formData,
                             body: e.target.value})}
                     />
                 </div>
+
                 <div>
                     <button type="submit">{buttonText}</button>
                 </div>
