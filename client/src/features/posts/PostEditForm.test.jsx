@@ -3,6 +3,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { fetchPost, updatePost } from "../../services/postService";
 import { act } from "react-dom/test-utils";
 import PostEditForm from "./PostEditForm";
+import {objectToFormData} from "../../utils/formDataHelper.js";
 
 jest.mock("../../services/postService", () => ({
     fetchPost: jest.fn(),
@@ -52,7 +53,10 @@ describe("PostEditForm", () => {
         const newPost = {
             title: "New Post Title",
             body: "New Post Body",
+            image: null
         };
+
+        const formData = objectToFormData({ post: newPost });
 
         fireEvent.change(screen.getByLabelText(/title/i), {
             target: { value: newPost.title },
@@ -69,7 +73,7 @@ describe("PostEditForm", () => {
 
         await waitFor(() => {
             expect(updatePost).toHaveBeenCalledTimes(1);
-            expect(updatePost).toHaveBeenCalledWith("1", newPost);
+            expect(updatePost).toHaveBeenCalledWith("1", formData);
         });
 
         expect(screen.getByText("Post Detail")).toBeInTheDocument();

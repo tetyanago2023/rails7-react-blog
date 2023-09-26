@@ -85,4 +85,29 @@ describe("Postform component", () => {
         expect(mockSubmit).toHaveBeenCalledTimes(1);
         expect(mockSubmit).toHaveBeenCalledWith({ title: newTitle, body: newBody, image: "" });
     });
+
+    test("handles image file upload", () => {
+        const mockSubmit = jest.fn();
+        const buttonText = "Submit";
+        const headerText = "New Post";
+
+        const consoleSpy = jest.spyOn(console, "log");
+        consoleSpy.mockImplementation(() => {});
+
+        const { getByLabelText } = render(
+            <PostForm
+                buttonText={buttonText}
+                headerText={headerText}
+                onSubmit={mockSubmit}
+            />
+        );
+
+        // Mock a file upload
+        const file = new File(["sample"], "sample.png", { type: "image/png" });
+        const imageInput = getByLabelText(/image/i);
+
+        fireEvent.change(imageInput, { target: { files: [file] } });
+
+        expect(consoleSpy).toHaveBeenCalledWith(file);
+    });
 });
