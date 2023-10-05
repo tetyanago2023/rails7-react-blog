@@ -20,7 +20,7 @@ then install the required version of Ruby:
 
 Resource - https://github.com/rvm/rvm/issues/5047
 
-Rails version - 7.0.7
+Rails version - 7.1.0.rc2
 
 React version - 18.2.0
 
