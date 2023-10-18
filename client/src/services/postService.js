@@ -1,12 +1,10 @@
 import { POSTS_API_URL, SEARCH_API_URL } from "../constants";
 
-async function fetchAllPosts () {
-    const response = await fetch(`${POSTS_API_URL}`);
-
+async function fetchAllPosts(page = 1) {
+    const response = await fetch(`${POSTS_API_URL}?page=${page}`);
     if (!response.ok) {
         throw new Error(response.statusText);
     }
-
     return response.json();
 }
 
