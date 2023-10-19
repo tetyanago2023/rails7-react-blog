@@ -30,7 +30,7 @@ const usePostsData = (searchTerm, page = 1) => {
             }
         }
         loadPosts();
-    }, [searchTerm]);
+    }, [searchTerm, page]);
 
     return { posts, loading, error, totalPosts, perPage };
 };
